@@ -1,23 +1,20 @@
-% Facts representing the database with names and dates of birth
-dob(john, date(1990, 5, 15)).
-dob(susan, date(1985, 8, 23)).
-dob(mike, date(1995, 2, 10)).
-dob(lisa, date(1980, 11, 7)).
+% Database of individuals with names and DOBs
+person(john, '1990-05-15').
+person(susan, '1985-11-30').
+person(michael, '1995-02-10').
+person(emily, '2000-08-22').
 
-% Query to get the date of birth for a given person
-get_dob(Person, DateOfBirth) :-
-    dob(Person, DateOfBirth).
+% Predicate to retrieve the DOB of a person
+get_dob(Name, DOB) :-
+    person(Name, DOB).
 
-% Query to check if a person is born in a specific year
-born_in_year(Person, Year) :-
-    dob(Person, date(Year, _, _)).
+% Example queries
+?- get_dob(john, DOB).
+DOB = '1990-05-15'.
 
-% Query to check if a person is born in a specific month
-born_in_month(Person, Month) :-
-    dob(Person, date(_, Month, _)).
+?- get_dob(susan, DOB).
+DOB = '1985-11-30'.
 
-
-
-% get_dob(john, Date).
-%born_in_year(susan, 1985).
-%born_in_month(mike, 2).
+?- get_dob(alex, DOB). % Person not in the database
+false.
+```
